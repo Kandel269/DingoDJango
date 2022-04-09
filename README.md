@@ -1,0 +1,2 @@
+# DingoDJango
+Django pracitce
