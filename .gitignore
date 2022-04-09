@@ -1,2 +1,5 @@
 DjangoVENV/Include DjangoVENV/Lib DjangoVENV/Scripts DjangoVENV/pyvenv.cfg
 *DjangoVENV*
+db.sqlite3
+.idea
+__pycache__
