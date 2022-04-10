@@ -7,8 +7,10 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 
+
 def get_hello(request: WSGIRequest) -> HttpResponse:
-    return HttpResponse("<h1>hello world</h1>")
+    hello = "hello world"
+    return render(request, template_name= "hello_world.html", context={"hello_var": hello} )
 
 
 def get_uuids_a(request: WSGIRequest) -> HttpResponse:
