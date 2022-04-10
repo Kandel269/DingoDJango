@@ -17,4 +17,3 @@ def get_uuids_b(request: WSGIRequest) -> JsonResponse:
     uuids = [f"{uuid4()}" for _ in range(10)]
     return JsonResponse({"uuids": uuids})
 
-
