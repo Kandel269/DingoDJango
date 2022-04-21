@@ -4,8 +4,19 @@ from django.core.exceptions import BadRequest
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
+from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
+from books.models import BookAuthor
+
+
+class AuthorListBaseView(View):
+    template_name = "author_list.html"
+    queryset = BookAuthor.objects.all()  # type: ignore
+
+    def get(self,request: WSGIRequest,*args,**kwargs):
+        context = {'authors': self.queryset}
+        return render(request, template_name= self.template_name, context= context)
 
 
 def get_hello(request: WSGIRequest) -> HttpResponse:
@@ -55,3 +66,4 @@ def raise_error_for_fun(request: WSGIRequest) -> HttpResponse:
     if not request.method == "GET":
         raise BadRequest("method not allowed Dzbanie!")
     return HttpResponse("jest GIT")
+
