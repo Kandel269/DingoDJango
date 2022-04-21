@@ -7,8 +7,9 @@ from django.shortcuts import render, get_object_or_404
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView
-
+import logging
 from books.models import BookAuthor, Category, Book
+logger = logging.getLogger("Kot")
 
 
 class AuthorListBaseView(View):
@@ -16,6 +17,7 @@ class AuthorListBaseView(View):
     queryset = BookAuthor.objects.all()  # type: ignore
 
     def get(self,request: WSGIRequest,*args,**kwargs):
+        logger.debug(f"Dupa!!! + {request}")
         context = {'authors': self.queryset}
         return render(request, template_name= self.template_name, context= context)
 
