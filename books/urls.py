@@ -3,7 +3,7 @@ from django.urls import path
 from books.views import get_uuids_a, get_uuids_b, get_argument_from_path, get_argument_from_query, \
     check_http_query_type, get_headers, raise_error_for_fun, AuthorListBaseView, CategoryListTemplateView, \
     BooksListView, BooksDetails, CategoryCreateFormsView, AuthorCreateView, AuthorUpdateView, BookCreateView, \
-    BookUpdateView
+    BookUpdateView, BookDeleteView
 
 urlpatterns = [
     path('uuids-a', get_uuids_a),
@@ -18,6 +18,7 @@ urlpatterns = [
     path('books-list', BooksListView.as_view(), name = "books_list"),
     path('book-create', BookCreateView.as_view(), name="book_create"),
     path('book-update/<int:pk>/', BookUpdateView.as_view(), name="book_update"),
+    path('book-delete/<int:pk>/', BookDeleteView.as_view(), name="book_delete"),
     path('book-details/<int:pk>/', BooksDetails.as_view(), name = "books_details"),
     path('category-create',CategoryCreateFormsView.as_view(), name = "category_create"),
     path('author-create',AuthorCreateView.as_view(), name = "author_create"),

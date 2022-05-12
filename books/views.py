@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import TemplateView, ListView, DetailView, FormView, CreateView, UpdateView
+from django.views.generic import TemplateView, ListView, DetailView, FormView, CreateView, UpdateView, DeleteView
 import logging
 
 from books.forms import CategoryForm, AuthorForm, BookForm
@@ -79,6 +79,22 @@ class BookUpdateView(UpdateView):
     template_name = "book_form.html"
     form_class = BookForm
     success_url =  reverse_lazy("books_list")
+
+    def get_object(self, **kwargs):
+        return get_object_or_404(Book, id=self.kwargs.get("pk"))
+
+    # def get_success_url(self):
+    #     return reverse_lazy("book_list")
+
+class BookDeleteView(DeleteView):
+    template_name = "book_delete.html"
+    model = Book
+    success_url =  reverse_lazy("books_list")
+
+    def get_object(self, **kwargs):
+        return get_object_or_404(Book, id=self.kwargs.get("pk"))
+    # def get_success_url(self):
+    #     return reverse_lazy("book_list")
 
 def get_hello(request: WSGIRequest) -> HttpResponse:
     hello = "hello world"
